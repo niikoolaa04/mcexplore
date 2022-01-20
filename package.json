@@ -1,0 +1,17 @@
+{
+  "name": "mcsrvstat-wrapper",
+  "version": "1.0.0",
+  "description": "Wrapper for mcsrvstat.us Website API",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  },
+  "author": "nidzo",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^3.1.1"
+  }
+}
