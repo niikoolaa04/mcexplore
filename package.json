@@ -1,17 +1,29 @@
 {
   "name": "mcsrvstat-wrapper",
   "version": "1.0.0",
-  "description": "Wrapper for mcsrvstat.us Website API",
-  "main": "src/index.js",
+  "author": "nidzoo",
+  "description": "API Wrapper for mcsrvstat.us website.",
+  "main": "lib/index.js",
+  "files": [
+    "lib/**/*"
+  ],
+  "types": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublishOnly": "npm test && npm run lint",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags",
+    "test": "jest --config jestconfig.json"
   },
   "devDependencies": {
-    "typescript": "^4.5.4"
+    "@types/jest": "^28.1.1",
+    "@types/node-fetch": "^2.6.2",
+    "jest": "^28.1.1",
+    "ts-jest": "^28.0.5",
+    "typescript": "^4.7.3"
   },
-  "author": "nidzo",
-  "license": "MIT",
-  "dependencies": {
-    "node-fetch": "^3.1.1"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niikoolaa04/mcsrvstatus-wrapper.git"
+  },
+  "license": "MIT"
 }

@@ -3,10 +3,14 @@ import fetch from "node-fetch";
 const URL_FETCH = `https://api.mcsrvstat.us/2/`;
 
 /**
+ * Get Server's IP Address if domain is provided
+ * 
  * @param ip IP Addresss of Server
  */
 export const isOnline = async(ip: String) => {
-  await fetch(`${URL_FETCH}${ip}`).then(async(res: any) => {
+  if(!ip || typeof ip != "string") throw new Error("Valid IP must be provided");
+
+  return await fetch(`${URL_FETCH}${ip}`).then(async(res: any) => {
     let apiResponse: any = await res.json();
     
     return apiResponse.online;
@@ -14,10 +18,14 @@ export const isOnline = async(ip: String) => {
 }
 
 /**
+ * Get Server's port
+ * 
  * @param ip IP Address of Server
  */
 export const getPort = async(ip: String) => {
-  await fetch(`${URL_FETCH}${ip}`).then(async(res: any) => {
+  if(!ip || typeof ip != "string") throw new Error("Valid IP must be provided");
+
+  return await fetch(`${URL_FETCH}${ip}`).then(async(res: any) => {
     let apiResponse: any = await res.json();
     if(apiResponse.online == false) throw new Error("Server provided is offline or doesn't exist");
 
@@ -26,10 +34,14 @@ export const getPort = async(ip: String) => {
 }
 
 /**
+ * Get Software Server's using
+ * 
  * @param ip IP Address of Server
  */
 export const getSoftware = async(ip: String) => {
-  await fetch(`${URL_FETCH}${ip}`).then(async(res: any) => {
+  if(!ip || typeof ip != "string") throw new Error("Valid IP must be provided");
+
+  return await fetch(`${URL_FETCH}${ip}`).then(async(res: any) => {
     let apiResponse: any = await res.json();
     if(apiResponse.online == false) throw new Error("Server provided is offline or doesn't exist");
 
@@ -38,10 +50,14 @@ export const getSoftware = async(ip: String) => {
 }
 
 /**
+ * Get Server's version
+ * 
  * @param ip IP Address of Server
  */
 export const getVersion = async(ip: String) => {
-  await fetch(`${URL_FETCH}${ip}`).then(async(res: any) => {
+  if(!ip || typeof ip != "string") throw new Error("Valid IP must be provided");
+
+  return await fetch(`${URL_FETCH}${ip}`).then(async(res: any) => {
     let apiResponse: any = await res.json();
     if(apiResponse.online == false) throw new Error("Server provided is offline or doesn't exist");
 
@@ -50,10 +66,14 @@ export const getVersion = async(ip: String) => {
 }
 
 /**
+ * Get Number of Online Players on Server
+ * 
  * @param ip IP Address of Server
  */
 export const getPlayerCount = async (ip: String) => {
-  await fetch(`${URL_FETCH}${ip}`).then(async(res: any) => {
+  if(!ip || typeof ip != "string") throw new Error("Valid IP must be provided");
+
+  return await fetch(`${URL_FETCH}${ip}`).then(async(res: any) => {
     let apiResponse: any = await res.json();
     if(apiResponse.online == false) throw new Error("Server provided is offline or doesn't exist");
 
@@ -62,10 +82,14 @@ export const getPlayerCount = async (ip: String) => {
 }
 
 /**
+ * Get list of Server's Plugins
+ * 
  * @param ip IP Address of Server
  */
 export const getPluginList = async(ip: String) => {
-  await fetch(`${URL_FETCH}${ip}`).then(async(res: any) => {
+  if(!ip || typeof ip != "string") throw new Error("Valid IP must be provided");
+
+  return await fetch(`${URL_FETCH}${ip}`).then(async(res: any) => {
     let apiResponse: any = await res.json();
     if(apiResponse.online == false) throw new Error("Server provided is offline or doesn't exist");
 
@@ -74,11 +98,15 @@ export const getPluginList = async(ip: String) => {
 }
 
 /**
+ * Check whether Server has a specific Plugin
+ * 
  * @param ip IP Address of Server
  * @param plugin Name of Plugin to check
  */
 export const hasPlugin = async(ip: String, plugin: String) => {
-  await fetch(`${URL_FETCH}${ip}`).then(async(res: any) => {
+  if(!ip || typeof ip != "string") throw new Error("Valid IP must be provided");
+
+  return await fetch(`${URL_FETCH}${ip}`).then(async(res: any) => {
     let apiResponse: any = await res.json();
     if(apiResponse.online == false) throw new Error("Server provided is offline or doesn't exist");
     if(!apiResponse.plugins) throw new Error("Server provided don't have public plugin list");
