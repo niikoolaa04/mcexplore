@@ -1,3 +1,5 @@
 export * from './Client'
 export * from './structures/Servers'
 export * from './structures/Player'
+export * from './structures/minecraft/MinecraftData'
+export * from './structures/minecraft/BaseMinecraft'

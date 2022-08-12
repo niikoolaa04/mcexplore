@@ -1,27 +1,53 @@
-import axios from 'axios';
+import { MinecraftVersion, MinecraftItems, MinecraftBlocks, MinecraftEntities, MinecraftBiomes } from "types/Minecraft";
+import BaseMinecraft from "./BaseMinecraft";
 
-export default class MinecraftData {
+export default class MinecraftData extends BaseMinecraft {
   /**
-   * Base URL for Fetching Minecraft Data
-   * URL Structure: /pc/<version>/<type - items, entities..>.json
-   */
-   private BASE_URL = "https://raw.githubusercontent.com/PrismarineJS/minecraft-data/master/data/pc/"
-
-  /**
-   * Fetch Minecraft Data
+   * Get all Minecraft Items from specified Version
    * 
-   * @param {string} endpoint - Endpoint
-   * @return {any} Minecraft Data
+   * @param {MinecraftVersion} version - Version of Minecraft
+   * @return {MinecraftItems[]} List of Minecraft Items
    */
-  async _get(endpoint: string, url: string = this.BASE_URL) {
-    if(!endpoint || endpoint == "") throw new Error("Invalid Endpoint/Search Query have been provided.");
+  public getAllItems(version: MinecraftVersion = "1.18") {
+    return this._get(`/${version}/items.json`).then((res): MinecraftItems[] => res);
+  }
 
-    return axios.get(url == this.BASE_URL ? url + endpoint : url, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then((res) => res.data).catch((err) => {
-      throw new Error("Invalid Endpoint/Search Query have been provided.");
-    });
+  /**
+   * Get all Minecraft Entities from specified Version
+   * 
+   * @param {MinecraftVersion} version - Version of Minecraft
+   * @return {MinecraftEntities[]} List of Minecraft Entities
+   */
+  public getAllEntities(version: MinecraftVersion = "1.18") {
+    return this._get(`/${version}/entities.json`).then((res): MinecraftEntities[] => res);
+  }
+
+  /**
+   * Get all Minecraft Blocks from specified Version
+   * 
+   * @param {MinecraftVersion} version - Version of Minecraft
+   * @return {MinecraftBlocks[]} List of Minecraft Blocks
+   */
+  public getAllBlocks(version: MinecraftVersion = "1.18") {
+    return this._get(`/${version}/blocks.json`).then((res): MinecraftBlocks[] => res);
+  }
+
+  /**
+   * Get all Minecraft Biomes from specified Version
+   * 
+   * @param {MinecraftVersion} version - Version of Minecraft
+   * @return {MinecraftBiomes[]} List of Minecraft Biomes
+   */
+  public getAllBiomes(version: MinecraftVersion = "1.18") {
+    return this._get(`/${version}/blocks.json`).then((res): MinecraftBiomes[] => res);
+  }
+
+  /**
+   * Get list of Minecraft Versions (& snapshots)
+   * 
+   * @return {Array<string>} List of Minecraft Versions (& snapshots)
+   */
+  public listOfVersions() {
+    return this._get(`/common/versions.json`).then((res): Array<string> => res);
   }
 }

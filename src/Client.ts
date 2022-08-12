@@ -1,3 +1,4 @@
+import MinecraftData from "./structures/minecraft/MinecraftData";
 import Player from "./structures/Player";
 import Servers from "./structures/Servers";
 
@@ -5,6 +6,7 @@ export class Client {
   #options: object;
   private server: any
   private player: any
+  private minecraft: any
 
   constructor(options: object = {}) {
     this.#options = options;
@@ -16,5 +18,9 @@ export class Client {
 
   get playerInfo() {
     return this.player || (this.player = new Player());
+  }
+
+  get minecraftInfo() {
+    return this.minecraft || (this.minecraft = new MinecraftData());
   }
 }
