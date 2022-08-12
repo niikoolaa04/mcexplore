@@ -1,0 +1,1 @@
+GET https://raw.githubusercontent.com/PrismarineJS/minecraft-data/master/data/pc/1.18/items.json
