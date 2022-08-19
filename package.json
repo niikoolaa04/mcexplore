@@ -1,5 +1,5 @@
 {
-  "name": "mcinfo-js",
+  "name": "mcexplore",
   "version": "1.0.0",
   "author": "nidzoo",
   "description": "Get Information about Minecraft Player or Server.",
@@ -9,10 +9,10 @@
   ],
   "types": "dist/index.d.ts",
   "scripts": {
+    "build": "npx tsc",
     "prepublishOnly": "npm test && npm run lint",
     "version": "git add -A src",
     "postversion": "git push && git push --tags",
-    "testJest": "jest --config jestconfig.json",
     "test": "cd tests && node index.js"
   },
   "devDependencies": {
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/niikoolaa04/mcinfo-js.git"
+    "url": "git+https://github.com/niikoolaa04/mcexplore.git"
   },
   "license": "MIT",
   "dependencies": {
