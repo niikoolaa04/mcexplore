@@ -2,8 +2,13 @@ import { Platform, IPHostnameInterface } from "types/Server";
 import axios from "axios";
 
 export default class Servers {
-  private JAVA_URL = "https://api.mcsrvstat.us/2/";
-  private BEDROCK_URL = "https://api.mcsrvstat.us/bedrock/2/";
+  private JAVA_URL = "https://api.mcsrvstat.us/2";
+  private BEDROCK_URL = "https://api.mcsrvstat.us/bedrock/2";
+  private serverIp: string;
+
+  constructor(serverIp: string) {
+    this.serverIp = serverIp
+  }
 
   /**
    * Fetch MCSrvStat.us API
@@ -12,7 +17,7 @@ export default class Servers {
    * @param {string} platform - Java or Bedrock Platform
    * @return {object} Whole Server Object
    */
-  async _get(ip: string, platform: Platform = "Java") {
+  async _get(ip: string = this.serverIp, platform: Platform = "Java") {
     if(platform != "Java" && platform != "Bedrock") throw new Error("Invalid Minecraft Platform have been provided.");
     if(!ip || ip == "") throw new Error("Invalid IP Address have been provided.");
 
@@ -32,8 +37,8 @@ export default class Servers {
    * @param {string} platform - Java or Bedrock Platform
    * @return {object} Whole Server Object
    */
-  public getServer(ip: string, platform: Platform = "Java") {
-    return this._get(ip, platform);
+  public getServer(ip: string = this.serverIp, platform: Platform = "Java") {
+    return this._get(`/${ip}`, platform);
   }
 
   /**
@@ -43,8 +48,8 @@ export default class Servers {
    * @param {string} platform - Java or Bedrock Platform
    * @return {Array} List of Server Plugins 
    */
-  public getPluginList(ip: string, platform: Platform = "Java") {
-    return this._get(ip, platform).then((res) => res.plugins ? res.plugins.raw : []);
+  public getPluginList(ip: string = this.serverIp, platform: Platform = "Java") {
+    return this._get(`/${ip}`, platform).then((res) => res.plugins ? res.plugins.raw : []);
   }
 
   /**
@@ -54,8 +59,8 @@ export default class Servers {
    * @param {string} platform - Java or Bedrock Platform
    * @return {string} Name of Software
    */
-  public getSoftware(ip: string, platform: Platform = "Java") {
-    return this._get(ip, platform).then((res) => res.software ? res.software : "N/A");
+  public getSoftware(ip: string = this.serverIp, platform: Platform = "Java") {
+    return this._get(`/${ip}`, platform).then((res) => res.software ? res.software : "N/A");
   }
 
   /**
@@ -65,8 +70,8 @@ export default class Servers {
    * @param {string} platform - Java or Bedrock Platform
    * @return {string} Version of Server
    */
-  public getVersion(ip: string, platform: Platform = "Java") {
-    return this._get(ip, platform).then((res) => res.version);
+  public getVersion(ip: string = this.serverIp, platform: Platform = "Java") {
+    return this._get(`/${ip}`, platform).then((res) => res.version);
   }
 
   /**
@@ -76,8 +81,8 @@ export default class Servers {
    * @param {string} platform - Java or Bedrock Platform
    * @return {Array} Name of Players Online
    */
-  public getPlayerNames(ip: string, platform: Platform = "Java") {
-    return this._get(ip, platform).then((res) => res.players.list ? res.players.list : []);
+  public getPlayerNames(ip: string = this.serverIp, platform: Platform = "Java") {
+    return this._get(`/${ip}`, platform).then((res) => res.players.list ? res.players.list : []);
   }
 
   /**
@@ -87,8 +92,8 @@ export default class Servers {
    * @param {string} platform - Java or Bedrock Platform
    * @return {number} Count of Online Players
    */
-  public getOnlineCount(ip: string, platform: Platform = "Java") {
-    return this._get(ip, platform).then((res) => res.players.online);
+  public getOnlineCount(ip: string = this.serverIp, platform: Platform = "Java") {
+    return this._get(`/${ip}`, platform).then((res) => res.players.online);
   }
 
   /**
@@ -98,8 +103,8 @@ export default class Servers {
    * @param {string} platform - Java or Bedrock Platform
    * @return {boolean} Is Server Online
    */
-  public isOnline(ip: string, platform: Platform = "Java") {
-    return this._get(ip, platform).then((res) => res.online);
+  public isOnline(ip: string = this.serverIp, platform: Platform = "Java") {
+    return this._get(`/${ip}`, platform).then((res) => res.online);
   }
 
   /**
@@ -109,8 +114,8 @@ export default class Servers {
    * @param {string} platform - Java or Bedrock Platform
    * @return {object} Numerical IP, Port & Hostname
    */
-  public getIPHostname(ip: string, platform: Platform = "Java") {
-    return this._get(ip, platform).then((res): IPHostnameInterface => {
+  public getIPHostname(ip: string = this.serverIp, platform: Platform = "Java") {
+    return this._get(`/${ip}`, platform).then((res): IPHostnameInterface => {
       return {
         ip: res.ip,
         port: res.port,

@@ -3,24 +3,21 @@ import Player from "./structures/Player";
 import Servers from "./structures/Servers";
 
 export class Client {
-  #options: object;
-  private server: any
-  private player: any
-  private minecraft: any
+  #options: any;
 
-  constructor(options: object = {}) {
+  constructor(options: any = { ip: '***REMOVED***' }) {
     this.#options = options;
   }
 
   get serverInfo() {
-    return this.server || (this.server = new Servers());
+    return new Servers(this.#options.ip);
   }
 
   get playerInfo() {
-    return this.player || (this.player = new Player());
+    return new Player();
   }
 
   get minecraftInfo() {
-    return this.minecraft || (this.minecraft = new MinecraftData());
+    return new MinecraftData();
   }
 }

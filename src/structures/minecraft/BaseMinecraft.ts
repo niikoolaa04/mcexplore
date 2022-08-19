@@ -5,7 +5,7 @@ export default class BaseMinecraft {
    * Base URL for Fetching Minecraft Data
    * URL Structure: /pc/<version>/<type - items, entities..>.json
    */
-   private BASE_URL = "https://raw.githubusercontent.com/PrismarineJS/minecraft-data/master/data/pc/"
+   private BASE_URL = "https://raw.githubusercontent.com/PrismarineJS/minecraft-data/master/data/pc"
 
   /**
    * Fetch Minecraft Data
@@ -21,6 +21,7 @@ export default class BaseMinecraft {
         'Content-Type': 'application/json'
       }
     }).then((res) => res.data).catch((err) => {
+      console.log(err)
       throw new Error("Invalid Endpoint/Search Query have been provided.");
     });
   }

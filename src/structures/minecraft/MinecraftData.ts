@@ -3,12 +3,19 @@ import BaseMinecraft from "./BaseMinecraft";
 
 export default class MinecraftData extends BaseMinecraft {
   /**
+   * List of All valid Minecraft Versions
+   */
+  private validVersions: String[] = ["1.7", "1.8", "1.9", "1.10", "1.11",
+    "1.12", "1.13", "1.14", "1.15", "1.16", "1.17", "1.18", "1.19"];
+  
+  /**
    * Get all Minecraft Items from specified Version
    * 
    * @param {MinecraftVersion} version - Version of Minecraft
    * @return {MinecraftItems[]} List of Minecraft Items
    */
   public getAllItems(version: MinecraftVersion = "1.18") {
+    if(!this.validVersions.includes(version)) throw new Error("Invalid Minecraft Version have been provided. It must be an first Version, ex. 1.8, 1.12, 1.17.");
     return this._get(`/${version}/items.json`).then((res): MinecraftItems[] => res);
   }
 
@@ -19,6 +26,7 @@ export default class MinecraftData extends BaseMinecraft {
    * @return {MinecraftEntities[]} List of Minecraft Entities
    */
   public getAllEntities(version: MinecraftVersion = "1.18") {
+    if(!this.validVersions.includes(version)) throw new Error("Invalid Minecraft Version have been provided. It must be an first Version, ex. 1.8, 1.12, 1.17.");
     return this._get(`/${version}/entities.json`).then((res): MinecraftEntities[] => res);
   }
 
@@ -29,6 +37,7 @@ export default class MinecraftData extends BaseMinecraft {
    * @return {MinecraftBlocks[]} List of Minecraft Blocks
    */
   public getAllBlocks(version: MinecraftVersion = "1.18") {
+    if(!this.validVersions.includes(version)) throw new Error("Invalid Minecraft Version have been provided. It must be an first Version, ex. 1.8, 1.12, 1.17.");
     return this._get(`/${version}/blocks.json`).then((res): MinecraftBlocks[] => res);
   }
 
@@ -39,6 +48,7 @@ export default class MinecraftData extends BaseMinecraft {
    * @return {MinecraftBiomes[]} List of Minecraft Biomes
    */
   public getAllBiomes(version: MinecraftVersion = "1.18") {
+    if(!this.validVersions.includes(version)) throw new Error("Invalid Minecraft Version have been provided. It must be an first Version, ex. 1.8, 1.12, 1.17.");
     return this._get(`/${version}/blocks.json`).then((res): MinecraftBiomes[] => res);
   }
 
