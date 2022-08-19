@@ -1,9 +1,8 @@
 # MCExplore
-___
 [![npm package](https://nodei.co/npm/js.poke.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/js.poke/)
+
 MCExplore is NPM Package which allows you to get various data about Minecraft Server, Minecraft Player & Minecraft Game itself.
 ## Features
-___
 ### Player
 * Get Avatar
 * Get Skin (Download & View Links)
@@ -18,15 +17,19 @@ ___
 * Get Number of Players
 * Whether Server is Online
 * Get Hostname/IP from IP/Hostname
+### Minecraft
+* Get all Minecraft Items
+* Get all Minecraft Entities
+* Get all Minecraft Blocks
+* Get all Minecraft Biomes
+* Get list of Minecraft Versions
 
 ## Installation
-___
 ```
 npm install mcexplore
 ```
 
 ## Easy Usage
-___
 ```
 // Importing 'Client' as 'MCExplore' for better readability
 const { Client: MCExplore } = require("mcexplore");
@@ -45,20 +48,21 @@ mcExplorer.playerInfo.getPlayer("Notch").then((result) => {
 ```
 
 ## Usage
-___
-For begging, you need to initialize MCExplore Client as so:
+For beginning, you need to initialize MCExplore Client as so:
 ```
 // Importing 'Client' as 'MCExplore' for better readability
 const { Client: MCExplore } = require("mcexplore");
 
+// Specifying Server IP manually
 const mcExplorer = new MCExplore();
+
+// Specifying Server IP once
+// const mcExplorer = new MCExplore({ ip: "example.com" });
 ```
 and after that you can use functions on `mcExplorer`.
-
-All Server functions accepts `ip` and `platform` (optional) parameters, where `platform` isn't required but can be `Java` or `Bedrock`.
-All Player functions accepts `username` parameter.
-Minecraft functions accepts (optional) `version` parameter, defaults to latest Minecraft Version.
 ### **Server**
+Server functions accepts `ip` and (optional) `platform` parameters, where `platform` isn't required but can be `Java` or `Bedrock`.
+___
 Get all Server Information at once
 ```
 mcExplorer.serverInfo.getServer(serverIp, platform?).then((result) => {
@@ -109,6 +113,8 @@ mcExplorer.serverInfo.getIPHostname(serverIp, platform?).then((result) => {
 });
 ```
 ### **Player**
+These functions accepts `username` parameter which is required.
+___
 Check whether Account exist
 ```
 mcExplorer.playerInfo.accountExist(username).then((result) => {
@@ -152,6 +158,8 @@ mcExplorer.playerInfo.getCape(username).then((result) => {
 });
 ```
 ### **Minecraft**
+These functions accepts (optional) `version` parameter, defaults to latest Minecraft Version.
+___
 Get list of Minecraft Items
 ```
 mcExplorer.minecraftInfo.getAllItems(version?).then((result) => {
