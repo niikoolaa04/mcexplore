@@ -56,9 +56,7 @@ const mcExplorer = new MCExplore();
 and after that you can use functions on `mcExplorer`.
 
 All Server functions accepts `ip` and `platform` (optional) parameters, where `platform` isn't required but can be `Java` or `Bedrock`.
-
 All Player functions accepts `username` parameter.
-
 Minecraft functions accepts (optional) `version` parameter, defaults to latest Minecraft Version.
 ### **Server**
 Get all Server Information at once
