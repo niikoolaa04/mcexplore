@@ -1,5 +1,5 @@
 # MCExplore
-[![npm package](https://nodei.co/npm/js.poke.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/js.poke/)
+[![npm package](https://nodei.co/npm/mcexplore.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/mcexplore/)
 
 MCExplore is NPM Package which allows you to get various data about Minecraft Server, Minecraft Player & Minecraft Game itself.
 ## Features
