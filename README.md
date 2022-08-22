@@ -191,6 +191,12 @@ mcExplorer.minecraftInfo.listOfVersions().then((result) => {
 });
 ```
 
+## Credits
+* PlayerDB: https://playerdb.co
+* Optifine: http://optifine.net
+* MCSrvStat.us: https://mcsrvstat.us
+* PrismarineJS' Github Repo: https://github.com/PrismarineJS/minecraft-data
+
 ## Upcoming
 * Get Information about Specific Biomes
 * Get Information about Specific Entity
