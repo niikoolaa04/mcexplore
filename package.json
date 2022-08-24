@@ -1,6 +1,6 @@
 {
   "name": "mcexplore",
-  "version": "1.0.3",
+  "version": "1.0.3-fixes",
   "author": "nidzoo",
   "description": "Get Information about Minecraft Player, Server & Minecraft itself.",
   "main": "dist/index.js",
@@ -24,9 +24,9 @@
     "type": "git",
     "url": "git+https://github.com/niikoolaa04/mcexplore.git"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "keywords": ["minecraft", "minecraft server", 
     "player info", "minecraft player info", "get player", "search minecraft", 
     "minecraft items", "minecraft entities", "minecraft player", 
-    "search player", "mc server", "mc player", "mc server"]
+    "search player", "mc server", "mc player", "mc server", "api", "wrapper", "minecraft wrapper"]
 }

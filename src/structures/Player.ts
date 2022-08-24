@@ -18,6 +18,7 @@ export default class Player {
       throw new TypeError(`Expected 'username' to be of type 'string', instead received '${typeof username}'.`);
     if(typeof url != "string")
       throw new TypeError(`Expected 'url' to be of type 'string', instead received '${typeof url}'.`);
+    
     return axios.get(url == this.BASE_URL ? url + username : url, {
       headers: {
         'Content-Type': 'application/json'
