@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { PlayerSkin } from 'types/Player';
 
 export default class Player {
   private BASE_URL: string = "https://playerdb.co/api/player/minecraft";
@@ -11,15 +12,17 @@ export default class Player {
    * @param {string} username - Username or UUID of Player
    * @return {object} Player Object
    */
-  async _get(username: string, url: string = this.BASE_URL) {
+  private async _get(username: string, url: string = this.BASE_URL) {
     if(!username || username == "") throw new Error("Invalid Player Username have been provided.");
-
+    if(typeof username != "string")
+      throw new TypeError(`Expected 'username' to be of type 'string', instead received '${typeof username}'.`);
+    if(typeof url != "string")
+      throw new TypeError(`Expected 'url' to be of type 'string', instead received '${typeof url}'.`);
     return axios.get(url == this.BASE_URL ? url + username : url, {
       headers: {
         'Content-Type': 'application/json'
       }
     }).then((res) => res.data).catch((err) => {
-      console.log(err)
       throw new Error("Invalid Player Username have been provided.");
     });
   }
@@ -78,10 +81,10 @@ export default class Player {
    * Returns Object with Player Skin(s)
    * 
    * @param {string} username - Player's Username
-   * @return {object} Player's Skin
+   * @return {PlayerSkin} Player's Skin
    */
   public getSkin(username: string) {
-    return this._get(username, this.MOJANG_URL + `/users/profiles/minecraft/${username}`).then((res) => {
+    return this._get(username, this.MOJANG_URL + `/users/profiles/minecraft/${username}`).then((res): PlayerSkin => {
       return {
         skin_body: `https://mc-heads.net/player/${username}`,
         skin_raw: `https://mc-heads.net/skin/${username}`,

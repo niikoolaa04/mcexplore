@@ -21,6 +21,11 @@ export default class Servers {
     if(platform != "Java" && platform != "Bedrock") throw new Error("Invalid Minecraft Platform have been provided.");
     if(!ip || ip == "") throw new Error("Invalid IP Address have been provided.");
 
+    if(typeof ip != "string")
+      throw new TypeError(`Expected 'ip' to be of type 'string', instead received '${typeof ip}'.`);
+    if(typeof platform != "string")
+      throw new TypeError(`Expected 'platform' to be of type 'string', instead received '${typeof platform}'.`);
+
     return axios.get(platform == "Java" ? this.JAVA_URL + ip : this.BEDROCK_URL + ip, {
       headers: {
         'Content-Type': 'application/json'
@@ -93,7 +98,7 @@ export default class Servers {
    * @return {number} Count of Online Players
    */
   public getOnlineCount(ip: string = this.serverIp, platform: Platform = "Java") {
-    return this._get(`/${ip}`, platform).then((res) => res.players.online);
+    return this._get(`/${ip}`, platform).then((res): number => res.players.online);
   }
 
   /**
@@ -104,7 +109,7 @@ export default class Servers {
    * @return {boolean} Is Server Online
    */
   public isOnline(ip: string = this.serverIp, platform: Platform = "Java") {
-    return this._get(`/${ip}`, platform).then((res) => res.online);
+    return this._get(`/${ip}`, platform).then((res): boolean => res.online);
   }
 
   /**

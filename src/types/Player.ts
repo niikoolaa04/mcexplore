@@ -22,3 +22,9 @@ interface NameHistory {
   name: string,
   changedToAt?: number
 }
+
+export interface PlayerSkin {
+  skin_body: string,
+  skin_raw: string,
+  skin_download: string
+}
