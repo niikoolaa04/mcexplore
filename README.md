@@ -38,12 +38,12 @@ const mcExplorer = new MCExplore();
 
 // Get all Server Information at once
 mcExplorer.serverInfo.getServer("examplemc.com").then((result) => {
-    console.log(result);
+  console.log(result);
 });
 
 // Get all Player Information at once
 mcExplorer.playerInfo.getPlayer("Notch").then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 
@@ -59,135 +59,141 @@ const mcExplorer = new MCExplore();
 // Specifying Server IP once
 // const mcExplorer = new MCExplore({ ip: "example.com" });
 ```
-and after that you can use functions on `mcExplorer`.
+and after that you can use methods on `mcExplorer`.
 ### **Server**
-Server functions accepts `ip` and (optional) `platform` parameters, where `platform` isn't required but can be `Java` or `Bedrock`.
+Server methods accepts `ip` and (optional) `platform` parameters, where `platform` isn't required but can be `Java` or `Bedrock`.
 ___
 Get all Server Information at once
 ```
 mcExplorer.serverInfo.getServer(serverIp, platform?).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 Get List of Plugins
 ```
 mcExplorer.serverInfo.getPluginList(serverIp, platform?).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 Get which Software Server's Using
 ```
 mcExplorer.serverInfo.getSoftware(serverIp, platform?).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 Get Server's Version(s)
 ```
 mcExplorer.serverInfo.getVersion(serverIp, platform?).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 Get list of Player's Playing on Server
 ```
 mcExplorer.serverInfo.getPlayerNames(serverIp, platform?).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 Get Number of Players online
 ```
 mcExplorer.serverInfo.getOnlineCount(serverIp, platform?).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 Check whether Server is online or offline
 ```
 mcExplorer.serverInfo.isOnline(serverIp, platform?).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 If IP is provided, `Hostname, IP & Port` will be returned.
 If Hostname is provided `Hostname, IP & Port` will be returned
 ```
 mcExplorer.serverInfo.getIPHostname(serverIp, platform?).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 ### **Player**
-These functions accepts `username` parameter which is required.
+These methods accepts `username` parameter which is required.
 ___
 Check whether Account exist
 ```
 mcExplorer.playerInfo.accountExist(username).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 Get all Player Information at once
 ```
 mcExplorer.playerInfo.getPlayer(username).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 Get Player's Avatar
 ```
 mcExplorer.playerInfo.getAvatar(username).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 Get Player's Username History
 ```
 mcExplorer.playerInfo.getUsernameHistory(username).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 Get Player's UUID
 ```
 mcExplorer.playerInfo.getUUID(username).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 Get Player's Skin (View & Download Links)
 ```
 mcExplorer.playerInfo.getSkin(username).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 Get Player's Cape
 ```
 mcExplorer.playerInfo.getCape(username).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 ### **Minecraft**
-These functions accepts (optional) `version` parameter, defaults to latest Minecraft Version.
+These methods accepts (optional) `version` parameter, defaults to latest Minecraft Version.
 ___
 Get list of Minecraft Items
 ```
 mcExplorer.minecraftInfo.getAllItems(version?).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 Get list of Minecraft Entities
 ```
 mcExplorer.minecraftInfo.getAllEntities(version?).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 Get list of Minecraft Blocks
 ```
 mcExplorer.minecraftInfo.getAllBlocks(version?).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 Get list of Minecraft Biomes
 ```
 mcExplorer.minecraftInfo.getAllBiomes(version?).then((result) => {
-    console.log(result);
+  console.log(result);
 });
 ```
 Get list of Minecraft Versions
 ```
 mcExplorer.minecraftInfo.listOfVersions().then((result) => {
-    console.log(result);
+  console.log(result);
+});
+```
+Find specific Biome
+```
+mcExplorer.minecraftInfo.getBiome("Plains").then((result) => {
+  console.log(result);
 });
 ```
 
@@ -198,5 +204,4 @@ mcExplorer.minecraftInfo.listOfVersions().then((result) => {
 * PrismarineJS' Github Repo: https://github.com/PrismarineJS/minecraft-data
 
 ## Upcoming
-* Get Information about Specific Biomes
 * Get Information about Specific Entity
