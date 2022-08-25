@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { PlayerSkin } from 'types/Player';
+import { Mojang, PlayerDBInterface, PlayerSkin } from 'types/Player';
 
 export default class Player {
-  private BASE_URL: string = "https://playerdb.co/api/player/minecraft";
+  private BASE_URL: string = "https://playerdb.co/api/player/minecraft/";
   private MOJANG_URL: string = "https://api.mojang.com";
   private OPTIFINE_URL: string = "http://s.optifine.net/capes";
 
@@ -10,7 +10,7 @@ export default class Player {
    * Fetch PlayerDB API
    * 
    * @param {string} username - Username or UUID of Player
-   * @return {object} Player Object
+   * @return {PlayerDBInterface} Player Object
    */
   private async _get(username: string, url: string = this.BASE_URL) {
     if(!username || username == "") throw new Error("Invalid Player Username have been provided.");
@@ -35,7 +35,7 @@ export default class Player {
    * @return {boolean} true if exists, otherwise false
    */
   public accountExist(username: string) {
-    return this._get(username, this.MOJANG_URL + `/users/profiles/minecraft/${username}`).then((res) => !!res.name);
+    return this._get(username, this.MOJANG_URL + `/users/profiles/minecraft/${username}`).then((res: Mojang) => !!res.name);
   }
 
   /**
@@ -45,7 +45,7 @@ export default class Player {
    * @return {object} Whole Player Object
    */
   public getPlayer(username: string) {
-    return this._get(username);
+    return this._get(username).then((res: PlayerDBInterface) => res);
   }
   
   /**
@@ -55,7 +55,7 @@ export default class Player {
    * @return {string} Player's Avatar URL
    */
    public getAvatar(username: string) {
-    return this._get(username).then((res) => res.data.player.avatar);
+    return this._get(username).then((res: PlayerDBInterface) => res.data.player.avatar);
   }
   
   /**
@@ -75,7 +75,7 @@ export default class Player {
    * @return {string} Player's UUID
    */
    public getUUID(username: string) {
-    return this._get(username).then((res) => res.data.player.id);
+    return this._get(username).then((res: PlayerDBInterface) => res.data.player.id);
   }
 
   /**
@@ -85,7 +85,7 @@ export default class Player {
    * @return {PlayerSkin} Player's Skin
    */
   public getSkin(username: string) {
-    return this._get(username, this.MOJANG_URL + `/users/profiles/minecraft/${username}`).then((res): PlayerSkin => {
+    return this._get(username, this.MOJANG_URL + `/users/profiles/minecraft/${username}`).then((res: Mojang): PlayerSkin => {
       return {
         skin_body: `https://mc-heads.net/player/${username}`,
         skin_raw: `https://mc-heads.net/skin/${username}`,
@@ -101,6 +101,6 @@ export default class Player {
    * @return {string} Player's Cape
    */
   public getCape(username: string) {
-    return this._get(username, this.MOJANG_URL + `/users/profiles/minecraft/${username}`).then((res) => `${this.OPTIFINE_URL}${username}.png`);
+    return this._get(username, this.MOJANG_URL + `/users/profiles/minecraft/${username}`).then((res: Mojang) => `${this.OPTIFINE_URL}/${username}.png`);
   }
 }

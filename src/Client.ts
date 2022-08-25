@@ -1,3 +1,4 @@
+import { Options } from "./types/Base";
 import MinecraftData from "./structures/minecraft/MinecraftData";
 import Player from "./structures/Player";
 import Servers from "./structures/Servers";
@@ -5,7 +6,7 @@ import Servers from "./structures/Servers";
 export class Client {
   #options: any;
 
-  constructor(options: any = { ip: "" }) {
+  constructor(options: Options = { ip: "" }) {
     this.#options = options;
   }
 

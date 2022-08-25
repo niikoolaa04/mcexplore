@@ -62,6 +62,20 @@ export default class MinecraftData extends BaseMinecraft {
    * @return {Array<string>} List of Minecraft Versions (& snapshots)
    */
   public listOfVersions() {
-    return this._get(`/common/versions.json`).then((res): Array<string> => res);
+    return this._get(`/common/versions.json`).then((res): string[] => res);
   }
+
+  /**
+   * Get info on Specific Biome by Name
+   * 
+   * @param {string} name - Name of Biome
+   * @param {MinecraftVersion} version - Version of Minecraft
+   * @return {MinecraftBiomes} Minecraft Biome matching Name
+   */
+   public getBiome(name: string, version: MinecraftVersion = this.defaultVersion) {
+    if(!name) throw new Error("No Biome name have been provided.");
+    if(!this.validVersions.includes(version)) throw new Error("Invalid Minecraft Version have been provided. It must be an first Version, ex. 1.8, 1.12, 1.17.");
+    return this._get(`/${version}/biomes.json`).then((res: MinecraftBiomes[]) => res.find((b) => b.displayName.toLowerCase() == name.toLowerCase() || b.name.toLowerCase() == name.toLowerCase() || b.name.toLowerCase().includes(name.toLowerCase()) || b.displayName.toLowerCase().includes(name.toLowerCase())));
+  }
+
 }

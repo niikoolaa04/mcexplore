@@ -21,7 +21,6 @@ export default class BaseMinecraft {
         'Content-Type': 'application/json'
       }
     }).then((res) => res.data).catch((err) => {
-      console.log(err)
       throw new Error("Invalid Endpoint/Search Query have been provided.");
     });
   }

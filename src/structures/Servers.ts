@@ -1,4 +1,4 @@
-import { Platform, IPHostnameInterface } from "types/Server";
+import { Platform, IPHostnameInterface, BaseServer } from "types/Server";
 import axios from "axios";
 
 export default class Servers {
@@ -30,7 +30,7 @@ export default class Servers {
       headers: {
         'Content-Type': 'application/json'
       }
-    }).then((res) => res.data).catch((err) => {
+    }).then((res): BaseServer => res.data).catch((err) => {
       throw new Error("Invalid IP Address have been provided.");
     });
   }
@@ -40,7 +40,7 @@ export default class Servers {
    * 
    * @param {string} ip - IP of the Server
    * @param {string} platform - Java or Bedrock Platform
-   * @return {object} Whole Server Object
+   * @return {BaseServer} Whole Server Object
    */
   public getServer(ip: string = this.serverIp, platform: Platform = "Java") {
     return this._get(`/${ip}`, platform);
@@ -51,7 +51,7 @@ export default class Servers {
    * 
    * @param {string} ip - IP of the Server
    * @param {string} platform - Java or Bedrock Platform
-   * @return {Array} List of Server Plugins 
+   * @return {string[]} List of Server Plugins 
    */
   public getPluginList(ip: string = this.serverIp, platform: Platform = "Java") {
     return this._get(`/${ip}`, platform).then((res) => res.plugins ? res.plugins.raw : []);
@@ -84,7 +84,7 @@ export default class Servers {
    * 
    * @param {string} ip - IP of the Server
    * @param {string} platform - Java or Bedrock Platform
-   * @return {Array} Name of Players Online
+   * @return {string[]} Name of Players Online
    */
   public getPlayerNames(ip: string = this.serverIp, platform: Platform = "Java") {
     return this._get(`/${ip}`, platform).then((res) => res.players.list ? res.players.list : []);
@@ -117,7 +117,7 @@ export default class Servers {
    * 
    * @param {string} ip - IP of the Server
    * @param {string} platform - Java or Bedrock Platform
-   * @return {object} Numerical IP, Port & Hostname
+   * @return {IPHostnameInterface} Numerical IP, Port & Hostname
    */
   public getIPHostname(ip: string = this.serverIp, platform: Platform = "Java") {
     return this._get(`/${ip}`, platform).then((res): IPHostnameInterface => {

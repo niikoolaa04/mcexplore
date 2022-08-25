@@ -2,7 +2,7 @@ export interface PlayerDBInterface {
   message: string,
   code: string,
   data: {
-    player?: PlayerDBData,
+    player: PlayerDBData,
   },
   success: boolean,
   error: boolean,
@@ -16,6 +16,11 @@ export interface PlayerDBData {
   id: string,
   raw_id: string,
   avatar: string,
+}
+
+export interface Mojang {
+  name: string,
+  uuid: string
 }
 
 interface NameHistory {

@@ -1,6 +1,6 @@
 {
   "name": "mcexplore",
-  "version": "1.0.3-fixes",
+  "version": "1.0.4",
   "author": "nidzoo",
   "description": "Get Information about Minecraft Player, Server & Minecraft itself.",
   "main": "dist/index.js",
