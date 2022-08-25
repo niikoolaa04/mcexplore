@@ -5,7 +5,7 @@ import Servers from "./structures/Servers";
 export class Client {
   #options: any;
 
-  constructor(options: any = { ip: '***REMOVED***' }) {
+  constructor(options: any = { ip: "" }) {
     this.#options = options;
   }
 
